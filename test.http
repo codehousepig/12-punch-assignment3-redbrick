@@ -1,0 +1,56 @@
+### CREATE new user
+POST http://localhost:3012/users/signup
+Content-Type: application/json 
+
+{
+    "email": "test123@test.com",
+    "password": "test"
+}
+
+### Login
+POST http://localhost:3012/users/login
+Content-Type: application/json 
+
+{
+    "email": "test123@test.com",
+    "password": "test"
+}
+
+
+
+### GET test
+GET http://localhost:3012/gameDev/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMmYxOGM2NjlmZTgyODkzNDY1N2IiLCJpYXQiOjE2MzY0NDYyODQsImV4cCI6MTY3MjQ0NjI4NH0.buQJqeDMCPlSQOhI3BfRCulXkYnW4BAiydoit7VnOcQ
+
+### FIND game
+GET http://localhost:3012/gameDev?name=random1&limit=0&offset=0
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMmYxOGM2NjlmZTgyODkzNDY1N2IiLCJpYXQiOjE2MzY0NDYyODQsImV4cCI6MTY3MjQ0NjI4NH0.buQJqeDMCPlSQOhI3BfRCulXkYnW4BAiydoit7VnOcQ
+
+### CREATE game
+POST http://localhost:3012/gameDev/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMmYxOGM2NjlmZTgyODkzNDY1N2IiLCJpYXQiOjE2MzY0NDYyODQsImV4cCI6MTY3MjQ0NjI4NH0.buQJqeDMCPlSQOhI3BfRCulXkYnW4BAiydoit7VnOcQ
+
+{
+    "name" : "123asasdfdf",
+    "code" : "random",
+    "published" : false
+}
+
+### UPDATE game
+PATCH http://localhost:3012/gameDev/618a31a65a181ce86c681370
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMmYxOGM2NjlmZTgyODkzNDY1N2IiLCJpYXQiOjE2MzY0NDYyODQsImV4cCI6MTY3MjQ0NjI4NH0.buQJqeDMCPlSQOhI3BfRCulXkYnW4BAiydoit7VnOcQ
+
+{
+
+    "code" : "updatedCode"
+}
+
+### DELETE game
+DELETE http://localhost:3012/gameDev?name=random
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMWY0ZmY3YTQxOWRmZDg0MDMzNGUiLCJpYXQiOjE2MzY0NDMwNTUsImV4cCI6MTY3MjQ0MzA1NX0.xjvcVspvpv2LVAvBIrMOeEMVYguK8Jepjy6wXZes2a0
+

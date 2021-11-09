@@ -35,9 +35,25 @@ const signup = async (req, res, next) => {
   }
 };
 
+//로그인 사이트 이동
+const loginSite = async (req, res, next) => {
+  console.log('login site worked 1`2')
+  try {
+    console.log('login site worked 1`2')
+    const dirName = '/home/tech/coding/wanted/12-punch-assignment3-redbrick/front/login.html'
+    res.sendFile(dirName)
+  }
+  catch (e) {
+    console.log(e)
+  }
+}
+
 //로그인
 const login = async (req, res, next) => {
+  console.log('login', req.body)
   try {  
+    res.send(req.body.email)
+
     const user = await userRepo.findByEmail(req.body.email);
     if (!user) {
       return res.status(401).json({
@@ -137,4 +153,4 @@ const del = async (req, res, next) => {
 
 
 
-export default { signup, login, getList, getOne, patch, del };
+export default { signup, login, loginSite, getList, getOne, patch, del };

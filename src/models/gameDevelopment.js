@@ -9,5 +9,6 @@ const gameDevSchema = new Schema({
   published: { type: Boolean, default: false },
 });
 
-const User = mongoose.model('User', userSchema);
+const GameDevelopment = mongoose.model('GameDevelopment', gameDevSchema);
+
 module.exports = GameDevelopment;
