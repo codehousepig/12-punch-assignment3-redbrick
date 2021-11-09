@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
     credentials: true,
   })
 );*/
-// app.use(jwtMiddleware);
+app.use(jwtMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gameDev', gameDevRouter);
