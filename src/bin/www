@@ -29,27 +29,20 @@ var server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-export default io
-module.exports = io
-
-// const gameDev = require('../controllers/gameDevelopment')
-// import gameDev from "../controllers/gameDevelopment";
+const gameDev = require('../controllers/gameDevelopment')
 
 io.on('connection', (socket) => {
   console.log('socket: a user connected');
-
+  
   socket.on('chat message', (msg) => { //receive emitted input from HTML
     console.log('message: ' + msg);
-    
-    gameDev.update(msg)
-
+    gameDev.update(msg, 'res', 'next')
     io.emit('chat message', msg); //emit to everyone else on the server
   });
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   })
-
 });
 
 /**

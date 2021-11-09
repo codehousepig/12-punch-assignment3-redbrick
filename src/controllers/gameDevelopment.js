@@ -3,7 +3,7 @@ import gameDevRepo from "../repositories/gameDevelopment";
 const test = async (req, res, next) => {
   console.log('controller Test')
   try {
-    const dirName = `${__dirname}/gameDevelopment.html`
+    const dirName = '/home/tech/coding/wanted/12-punch-assignment3-redbrick/front/gameDevelopment.html'
     res.sendFile(dirName)
   } catch (e) {
     next(e);
@@ -51,8 +51,22 @@ const update = async (req, res, next) => {
     let params = {
       code: req.body.code
     };
+    
     console.log('updated', _id, params)
     const updatedGame = await gameDevRepo.update(_id, params);
+    res.json(updatedGame);
+  } 
+  
+  catch (e) {
+    next(e);
+  }
+};
+
+const updateRealTime = async (msg) => {
+  console.log('controller Update')
+  try {
+    
+    const updatedGame = await gameDevRepo.update(_id, { code: msg });
     res.json(updatedGame);
   } 
   

@@ -40,11 +40,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhM
 }
 
 ### UPDATE game
-PATCH http://localhost:3012/gameDev/
+PATCH http://localhost:3012/gameDev/618a31a65a181ce86c681370
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMWY0ZmY3YTQxOWRmZDg0MDMzNGUiLCJpYXQiOjE2MzY0NDMwNTUsImV4cCI6MTY3MjQ0MzA1NX0.xjvcVspvpv2LVAvBIrMOeEMVYguK8Jepjy6wXZes2a0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MThhMmYxOGM2NjlmZTgyODkzNDY1N2IiLCJpYXQiOjE2MzY0NDYyODQsImV4cCI6MTY3MjQ0NjI4NH0.buQJqeDMCPlSQOhI3BfRCulXkYnW4BAiydoit7VnOcQ
 
 {
+
     "code" : "updatedCode"
 }
 

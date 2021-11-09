@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+
+  <body>
+    <div class="wrap">
+      <div class="login">
+        <h2>Log-in</h2>
+        <div class="login_sns"></div>
+
+        <form action="localhost:3012/users/login" method="post">
+          <div class="login_id">
+            <h4>E-mail</h4>
+            <input type="email" name="" id="email" placeholder="Email" />
+          </div>
+  
+          <div class="login_pw">
+            <h4>Password</h4>
+            <input type="password" name="" id="password" placeholder="Password" />
+          </div>
+  
+          <button type="submit">submit</button>
+        </form>
+
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var form = document.getElementById('form');
+    var email = document.getElementById('email');
+    var password = document.getElementById('password');
+    if (form.onsubmit) {
+      console.log(email.value)
+      console.log(password.value)
+    }
+  </script>
+
+</html>
