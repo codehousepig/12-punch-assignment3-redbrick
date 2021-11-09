@@ -1,0 +1,27 @@
+###create new user
+POST http://localhost:3012/users/signup
+Content-Type: application/json 
+
+{
+    "email": "test@test.com",
+    "password": "test"
+}
+
+
+### Login
+POST http://localhost:3012/users/login
+Content-Type: application/json 
+
+{
+    "email": "test@test.com",
+    "password": "test"
+}
+
+
+### Anything else
+POST http://localhost:3012/gameDev/test
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTYzNjQzMjk4NywiZXhwIjoxNjcyNDMyOTg3fQ.9MNq49fgtv8J7gDUMFi6e3bU_Y-lDmPvSIlgh3S3chQ
+
+
+

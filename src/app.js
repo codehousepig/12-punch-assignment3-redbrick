@@ -5,7 +5,8 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
-// import jwtMiddleware from "./middlewares/jwt";
+import gameDevRouter from "./routes/gameDev";
+import jwtMiddleware from "./middlewares/jwt";
 import cors from "cors";
 // import db from "./models/index";
 
@@ -32,12 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
   })
 );*/
 // app.use(jwtMiddleware);
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/gameDev', gameDevRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404, 'Not Found'));
 });
 
