@@ -3,7 +3,7 @@
 - 과제 출제 기업 정보
   - 기업명 : 레드브릭
   - [레드브릭 사이트](https://wizlab.net/)
-  - [채용공고 링크]https://wizschool.notion.site/22564a15d2da40ab9d5812c68dd7ff3d)
+  - [채용공고 링크](https://wizschool.notion.site/22564a15d2da40ab9d5812c68dd7ff3d)
 
 ## Members
 |이름   |github                   |담당 기능|
@@ -81,16 +81,13 @@
 - pagination이 가능하도록 구현하였습니다. 기본 상품 조회 수는 5개이며, limit=상품개수 로 한 페이지당 조회되는 개수를 조절할 수 있습니다.
 - 상품 등록시 ValidationPipe() 를 이용하여 forbidNonWhitelisted: true 옵션으로 entity 의 없는 값을 사전에 차단합니다.
 
-### 게임 출시, 검색 (수정 필요)
-- Item, Tag 각각 조회는 가능하지만, 추가/수정/삭제는 관리자만이 할 수 있습니다.
-- Menu 와 @ManyToOne 으로 관계를 맺고 있어 따로 조회를 하지 않아도 해당 메뉴와 같이 조회됩니다.
-- 연관된 Menu 삭제 시 onDelete: 'CASCADE' 옵션으로 같이 삭제됩니다.
+### 게임 출시, 검색
+- 로그인 이후 게임 프로젝트를 만들어 출시하기(POST)를 하면 첫 프로젝트일 경우 새로운 출시가 되고 기존에 있던 프로젝트였다면 수정일이 바뀌어 재출시된다.
+- 출시되어 있는 목록을 보는 URL에서 'name' or 'game'으로 검색하여 원하는 검색 결과를 찾을 수 있다.
+- 한 페이지에 출시된 게임의 수는 5개이며 limit로 한 화면의 게임의 개수를 조절할 수 있고, offset으로 페이지를 조절할 수 있습니다.
 
-### 조회수, 좋아요 (수정 필요)
-- Item, Tag 각각 조회는 가능하지만, 추가/수정/삭제는 관리자만이 할 수 있습니다.
-- Menu 와 @ManyToOne 으로 관계를 맺고 있어 따로 조회를 하지 않아도 해당 메뉴와 같이 조회됩니다.
-- 연관된 Menu 삭제 시 onDelete: 'CASCADE' 옵션으로 같이 삭제됩니다.
-
+### 조회수, 좋아요
+- 로그인 상태로 모든 서비스에 접근한다는 것을 생각하여 사람들이 자주 찾고 인기 있는 게임의 차별성을 두기 위해 조회 수는 중복이 가능하게 하였습니다.
 
 ## API TEST 방법
 1. 다음 링크로 이동합니다. [postman 링크](https://www.postman.com/restless-escape-500858/workspace/12-punch-assignment-redbrick/collection/8136495-858c0e1c-e5f5-41c7-9650-02353ceed314)
