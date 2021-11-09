@@ -7,12 +7,24 @@ export default async (req, res, next) => {
       req.path.indexOf("/login") == -1 &&
       req.path.indexOf("/signup") == -1
     ) {
-      if (req.headers.authorization) {
+      console.log('=========================================')
+      console.log(req.headers.authorization);
+      console.log('=========================================')
+      console.log(req.cookies.accesstoken);
+      console.log('=========================================')
+
+      if (req.headers.authorization || req.cookies.accesstoken) {
         let id;
         const secret = "redbrick";
+        let userJwt;
+        if (req.headers.authorization) {
+          userJwt = req.cookies.accesstoken;
+        } else {
+          userJwt = req.headers.authorization.split(" ")[1];
+        }
         jwt.verify(
-          req.headers.authorization.split(" ")[1],
-          secret,
+            userJwt,
+            secret,
           (err, payload) => {
             if (err) {
               return res.status(401).json({ message: 'Wrong token', }); //토큰 에러
