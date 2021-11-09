@@ -1,5 +1,5 @@
-const Publish = require('../schemas/publish');
-const Like = require('../schemas/like');
+const Publish = require('../models/publish');
+const Like = require('../models/like');
 
 // 목록 조회
 const getAll = async (params) => {
@@ -23,23 +23,8 @@ const getAll = async (params) => {
 
 // 단건 조회 & 조회수 카운트
 const getOne = async (publish_id) => {
-    const getOnePublish = await Publish.findOne({_id: publish_id});
-    const getOneLikeCount = await likeCount(publish_id);
-
-    const pView = getOnePublish.view + 1;
-    console.log(getOnePublish);
-    await Publish.findByIdAndUpdate(publish_id, {view: pView});
-
-    const result = {
-        "_id": getOnePublish._id,
-        "name": getOnePublish.name,
-        "game": getOnePublish.game,
-        "view": getOnePublish.view,
-        "createDate": getOnePublish.createDate,
-        "updateDate": getOnePublish.updateDate,
-        "Like": getOneLikeCount
-    };
-    return result;
+    const getOnePublish = await Publish.findOne({_id: publish_id});    
+    return getOnePublish;    
 };
 
 // 추가(저장)
@@ -68,7 +53,7 @@ const update = async (publish_id, params) => {
 
 // 삭제
 const remove = async (removeId) => {
-    const result = await Publish.remove({id: removeId});
+    const result = await Publish.remove({_id: removeId});
     return result;
 };
 
