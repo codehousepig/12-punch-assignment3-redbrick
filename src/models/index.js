@@ -18,12 +18,12 @@ let sequelize = new Sequelize(
   }
 );
 
+
 fs.readdirSync(__dirname)
   .filter(
     (file) =>
       file.indexOf(".") !== 0 &&
-      file !== basename &&
-      file.slice(-9) === ".js"
+      file !== basename 
   )
   .forEach((file) => {
     const model = require(path.join(__dirname, file))(
@@ -31,6 +31,7 @@ fs.readdirSync(__dirname)
       Sequelize.DataTypes
     );
     models[model.name] = model;
+
   });
 
 Object.keys(models).forEach((modelName) => {

@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
   const GameDevelopment = sequelize.define(
     "GameDevelopment",
@@ -11,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER.UNSIGNED,
         field: "id",
       },
-      userId: { type: DataTypes.INTEGER, field: "user_id" },     
+      userId: { type: DataTypes.INTEGER.UNSIGNED, field: "user_id" },     
       name: { type: DataTypes.STRING }, 
       code: { type: DataTypes.STRING },
       published: { type: DataTypes.BOOLEAN },

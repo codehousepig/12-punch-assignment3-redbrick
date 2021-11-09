@@ -1,5 +1,3 @@
-"use strict";
-
 module.exports = (sequelize, DataTypes) => {
   const Like = sequelize.define(
     "Like",
@@ -11,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER.UNSIGNED,
         field: "id",
       },
-      userId: { type: DataTypes.INTEGER, field: "user_id" }, 
-      publishId: { type: DataTypes.INTEGER, field: "publish_id" }
+      userId: { type: DataTypes.INTEGER.UNSIGNED, field: "user_id" }, 
+      publishId: { type: DataTypes.INTEGER.UNSIGNED, field: "publish_id" }
     },
     {
       sequelize,

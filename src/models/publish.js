@@ -1,4 +1,4 @@
-"use strict";
+
 
 module.exports = (sequelize, DataTypes) => {
   const Publish = sequelize.define(
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         field: "id",
       },
       // userId: { type: DataTypes.INTEGER, field: "user_id" }, 
-      gameDevelopmentId: { type: DataTypes.INTEGER, field: "gameDevelopment_id" }, 
+      gameDevelopmentId: { type: DataTypes.INTEGER.UNSIGNED, field: "gameDevelopment_id" }, 
       name: { type: DataTypes.STRING }, 
       code: { type: DataTypes.STRING },      
       view: { type: DataTypes.INTEGER },
