@@ -8,7 +8,7 @@
 ## Members
 |이름   |github                   |담당 기능|
 |-------|-------------------------|--------------------|
-|김남형 |[42seouler](https://github.com/)   | 게임 제작   |
+|김남형 |[42seouler](https://github.com/)   | 게임 제작, cookie로 로그인 유지  |
 |김서경 |[riley909](https://github.com/riley909) | 게임 제작하기 Schema, CRUD, DB diagram, Realtime Architecture   |
 |김요셉 |[kim-jos](https://github.com/kim-jos)     | 게임 제작, Socket.io 실시간 저장 기능 구현   |
 |정천우 |[codehousepig](https://github.com/codehousepig)   | 게임 출시하기 CRUD, 조회수/좋아요, 게임 검색, Deployment   |
