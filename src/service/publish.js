@@ -1,6 +1,5 @@
 const Publish = require('../schemas/publish');
 const Like = require('../schemas/like');
-const mongoose = require('mongoose');
 
 // 목록 조회
 const getAll = async (params) => {
@@ -15,7 +14,8 @@ const getAll = async (params) => {
 
     // 조건을 확인한 뒤 나온 결과값을 페이징
     const getAllPublish = await Publish.find(where)
-        .skip(Number(params.offset) - 1)
+        .sort({createDate: -1}) // 만들어진 순서로 내림차순
+        .skip((Number(params.offset) - 1) * params.limit)
         .limit(Number(params.limit));
 
     return getAllPublish;
@@ -23,9 +23,21 @@ const getAll = async (params) => {
 
 // 단건 조회 & 조회수 카운트
 const getOne = async (publish_id) => {
-    const result = await Publish.findByIdAndUpdate({_id: publish_id});
-    const pView = result.view + 1;
+    const getOnePublish = await Publish.findOne({_id: publish_id});
+    const getOneLikeCount = await likeCount(publish_id);
+
+    const pView = getOnePublish.view + 1;
     await Publish.findByIdAndUpdate(publish_id, {view: pView});
+
+    const result = {
+        "_id": getOnePublish._id,
+        "name": getOnePublish.name,
+        "game": getOnePublish.game,
+        "view": getOnePublish.view,
+        "createDate": getOnePublish.createDate,
+        "updateDate": getOnePublish.updateDate,
+        "Like": getOneLikeCount
+    };
     return result;
 };
 
@@ -56,9 +68,10 @@ const plus = async (params) => {
     console.log(isExist);
     if (!isExist) {
         const result = new Like(params);
-        return result.save();
+        result.save();
+        return getOne(params.publish_id);
     } else {
-        return "Exist";
+        return getOne(params.publish_id);
     }
 };
 
