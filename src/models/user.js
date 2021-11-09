@@ -45,9 +45,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.prototype.toWeb = function () {
     const values = Object.assign({}, this)
-
     delete values.password
-
     return values
   }
 

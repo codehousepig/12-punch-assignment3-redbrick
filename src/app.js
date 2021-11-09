@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
-// import jwtMiddleware from "./middlewares/jwt.middleware";
+import jwtMiddleware from "./middlewares/jwt";
 import cors from "cors";
 import db from "./models/index";
 
@@ -27,6 +27,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(jwtMiddleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
