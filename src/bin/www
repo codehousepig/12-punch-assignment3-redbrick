@@ -8,6 +8,7 @@ var app = require('../app');
 var debug = require('debug')('12-punch-assignment3-redbrick:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -22,10 +23,33 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * Socket server for real-time data
+ */
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+const gameDev = require('../controllers/gameDevelopment')
+
+io.on('connection', (socket) => {
+  console.log('socket: a user connected');
+  
+  socket.on('chat message', (msg) => { //receive emitted input from HTML
+    console.log('message: ' + msg);
+    gameDev.update(msg, 'res', 'next')
+    io.emit('chat message', msg); //emit to everyone else on the server
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  })
+});
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, () => console.log(`listening on port: ${port}`));
 server.on('error', onError);
 server.on('listening', onListening);
 
