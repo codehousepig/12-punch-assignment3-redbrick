@@ -6,18 +6,23 @@ export default {
   // CREATE
   store: async (data) => await models.User.create(data),
 
-  // 리스트조회
+  // 리스트조회 + 검색
   all: async (
-    e 
-  ) =>
-    await models.User.findAll({
+    search 
+  ) =>{
+    let where = {};
+    if(search) where.email = {
+      [Op.like]: "%" + search + "%",
+    }
+    return await models.User.findAll({
+      attributes: { exclude: ["password"] },
       order: [["id", "DESC"]],
-      limit: 10,
-      offset: 10 * (Number(e.page) - 1)     
-    }),
+      where: where                  
+    })  
+  },
 
 
-  //리스트조회 + 갯수 반환
+  //리스트조회 + 페이징 + total반환
   findAndCountAll: async (
     e //페이징
   ) =>
@@ -30,14 +35,14 @@ export default {
       },
     }),
 
-  //리스트+아이템갯수+검색
+  //리스트조회 + 페이징 + total반환 + 검색
   findAndCountAllWithSearchWord: async (e) =>
     await models.User.findAndCountAll({
       order: [["id", "DESC"]],
       limit: 10,
       offset: 10 * (Number(e.page) - 1),
       where: {
-          name: {
+          email: {
             [Op.like]: "%" + e.searchWord + "%",
           },
       },

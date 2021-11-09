@@ -1,8 +1,9 @@
 const baseDbSetting = {
   database: "redbrick",
-  username: "admin",
-  password: "redbrick",
-  host: "redbrick.chiha599tyj3.ap-northeast-2.rds.amazonaws.com",
+  username: "root",
+  password: "anotherside**",
+  host: "localhost",
+  // host: "redbrick.chiha599tyj3.ap-northeast-2.rds.amazonaws.com",
   timezone: "+09:00",
   dialect: "mysql",
   pool: {
