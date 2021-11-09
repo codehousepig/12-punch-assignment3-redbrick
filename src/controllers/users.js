@@ -19,9 +19,10 @@ const signup = async (req, res, next) => {
     const user = await userRepo.findByEmail(req.body.email);
     if (!user) {
       let params = {
-        email: req.body.email,
-        password : req.body.password
+        email: req.body.email
       };
+      params.password = await hash(req.body.password);
+     
       await userRepo.store(params);
       return res.status(200).json({ message: 'OK' });
     } else {
@@ -70,7 +71,7 @@ const login = async (req, res, next) => {
 //리스트 조회
 const getList = async (req, res, next) => {
   try {
-    const data = await userRepo.all(req.query.search);
+    const data = await userRepo.all(req.query);
 
     return res.status(200).json({
       data,
@@ -125,7 +126,7 @@ const del = async (req, res, next) => {
         message: `User with ID: ${req.params.id} not found`,
       });  
     }else{
-       await user.destroy();
+      await userRepo.deleteUser(req.params.id);
       return res.status(201).json({ message: 'OK' });
     }
    

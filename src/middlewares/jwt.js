@@ -4,7 +4,9 @@ import userRepo from "../repositories/users.js";
 export default async (req, res, next) => {
   try {
     if (
-      true) {
+      req.path.indexOf("/login") == -1 &&
+      req.path.indexOf("/signup") == -1
+    ) {
       if (req.headers.authorization) {
         let id;
         const secret = "redbrick";

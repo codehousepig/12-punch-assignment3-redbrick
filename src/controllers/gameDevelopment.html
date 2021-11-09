@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Socket.IO chat</title>
+  <title>Game Development</title>
   <style>
     body {
       margin: 0;
@@ -73,11 +73,10 @@
   var form = document.getElementById('form');
   var input = document.getElementById('input');
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('keyup', (e) => {
     e.preventDefault();
-    if (input.value) {
+    if (input.value && event.code === 'Space') {
       socket.emit('chat message', input.value);
-      input.value = '';
     }
   });
 
