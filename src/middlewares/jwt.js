@@ -7,23 +7,11 @@ export default async (req, res, next) => {
       req.path.indexOf("/login") == -1 &&
       req.path.indexOf("/signup") == -1
     ) {
-      console.log('=========================================')
-      console.log(req.headers.authorization);
-      console.log('=========================================')
-      console.log(req.cookies.accesstoken);
-      console.log('=========================================')
-
-      if (req.headers.authorization || req.cookies.accesstoken) {
+      if (req.headers.authorization) {
         let id;
         const secret = "redbrick";
-        let userJwt;
-        if (req.headers.authorization) {
-          userJwt = req.cookies.accesstoken;
-        } else {
-          userJwt = req.headers.authorization.split(" ")[1];
-        }
         jwt.verify(
-            userJwt,
+            req.headers.authorization.split(" ")[1],
             secret,
           (err, payload) => {
             if (err) {
@@ -43,7 +31,6 @@ export default async (req, res, next) => {
         return res.status(401).json({ message: 'Unauthorized', }); //토큰 누락
       }
     }
-
     next();
   } catch (e) {
     next(e);

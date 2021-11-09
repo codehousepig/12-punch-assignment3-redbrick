@@ -4,28 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>jQuery 로그인</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#BtnLogin").click(function() {
-          var form_data = {
-            email: $("#email").val(),
-            password: $("#password").val(),
-          };
-          console.log(form_data);
-          $.ajax({
-            type: "POST",
-            url: "http://localhost:3012/users/login",
-            data: form_data,
-            success: function (res) {
-              console.log(res);
-              let updatedCookie = encodeURIComponent('accesstoken') + "=" + encodeURIComponent(res.token);
-              document.cookie = updatedCookie;
-            },
-          });
-          });
-        });
-    </script>
   </head>
   <body>
     <div class="wrap">
@@ -33,6 +11,7 @@
         <h2>Log-in</h2>
         <div class="login_sns"></div>
 
+        <form id="form1" name="form1" action="http://localhost:3012/users/login" method="post">
           <div class="login_id">
             <h4>E-mail</h4>
             <input type="email" name="email" id="email" placeholder="Email" />
@@ -41,7 +20,8 @@
             <h4>Password</h4>
             <input type="password" name="password" id="password" placeholder="Password" />
           </div>
-          <button id="BtnLogin">submit</button>
+          <button type="submit" id="BtnLogin">submit</button>
+        </form>
 
       </div>
     </div>

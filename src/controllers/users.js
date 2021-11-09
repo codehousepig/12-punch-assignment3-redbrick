@@ -72,10 +72,17 @@ const login = async (req, res, next) => {
         email: user.email,
         name: user.name,
       };
-      return res.status(200).json({
+      return res.cookie('accesstoken', token, {
+        maxAge: 5000,
+        // expires works the same as the maxAge
+        expires: new Date('01 12 2021'),
+        secure: true,
+        httpOnly: true,
+        sameSite: 'lax'
+      }).status(200).json({
         token,
         data: userData,
-      });
+      })
     }
   } catch (e) {
     next(e);
