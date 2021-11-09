@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const publishSchema = new Schema({
-    /*    user_id: {
-            type: Schema.Types.ObjectId,
-            ref: 'Users',
-            required: true
-        },*/
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Users',
+        required: true
+    },
+    develop_id: {
+        type: Schema.Types.ObjectId,
+        // ref: '',
+    },
     name: {type: String, required: true},
     game: {type: String, required: true},
     view: {type: Number, required: true},
