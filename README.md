@@ -70,7 +70,7 @@
 <img src="https://user-images.githubusercontent.com/67426853/140548110-87c2dddd-fe42-40cb-8562-f651bb5c3f2c.png" width=700>
 
 ## API
-[링크-postman document](https://documenter.getpostman.com/view/8136495/UVC2J9cG)
+[링크-postman document](https://documenter.getpostman.com/view/8136495/UVC5DSPt)
 
 
 ## 구현 기능
