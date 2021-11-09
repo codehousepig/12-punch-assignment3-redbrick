@@ -5,29 +5,34 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
-import jwtMiddleware from "./middlewares/jwt";
+// import jwtMiddleware from "./middlewares/jwt";
 import cors from "cors";
-import db from "./models/index";
+// import db from "./models/index";
+
+const connect = require('./utils/connDB');
 
 const app = express();
 
-const sequelize = db.sequelize;
-(async () => {
-  await sequelize.sync();
- })();
+connect();
+// const sequelize = db.sequelize;
+// (async () => {
+//   await sequelize.sync();
+//  })();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(
+
+/*app.use(
   cors({
     origin: true,
     credentials: true,
   })
-);
-app.use(jwtMiddleware);
+);*/
+// app.use(jwtMiddleware);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
