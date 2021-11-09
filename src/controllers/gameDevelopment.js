@@ -33,10 +33,8 @@ const create = async (req, res, next) => {
   try {
     const newGame = req.body;
     newGame.user = req.user;
-
-    let saveNewGame = await gameDevRepo.create(newGame);
-    console.log('saveNewGame', saveNewGame)
-    return saveNewGame;
+    let createdGame = await gameDevRepo.create(newGame);
+    res.json(createdGame)
   } 
   
   catch (e) {
@@ -62,27 +60,14 @@ const update = async (req, res, next) => {
   }
 };
 
-const updateRealTime = async (msg) => {
-  console.log('controller Update')
-  try {
-    
-    const updatedGame = await gameDevRepo.update(_id, { code: msg });
-    res.json(updatedGame);
-  } 
-  
-  catch (e) {
-    next(e);
-  }
-};
-
 const hardDelete = async (req, res, next) => {
   console.log('controller HardDelete')
   try {
     const gameList = await findAll(req, res, next);
-    const gameToBeDeleted = gameList.find(x => x.name === req.query.name)
-    
+    const gameToBeDeleted = gameList.find(x => x.name == req.query.name)
+    console.log('game', gameToBeDeleted)
     const deletedGame = await gameDevRepo.hardDelete(gameToBeDeleted._id)
-    return deletedGame;
+    res.json(deletedGame);
   } 
   
   catch (e) {
@@ -90,5 +75,4 @@ const hardDelete = async (req, res, next) => {
   }
 };
 
-// export default { test, create, update, hardDelete, findAll };
 module.exports = { test, create, update, hardDelete, findAll };
