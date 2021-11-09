@@ -3,8 +3,9 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import indexRouter from "./routes/index";
+import indexRouter from "./routes";
 import usersRouter from "./routes/users";
+import developsRouter from "./routes/develops";
 // import jwtMiddleware from "./middlewares/jwt";
 import cors from "cors";
 // import db from "./models/index";
@@ -12,12 +13,22 @@ import cors from "cors";
 const connect = require('./utils/connDB');
 
 const app = express();
+var expressWs = require('express-ws')(app);
+
 
 connect();
 // const sequelize = db.sequelize;
 // (async () => {
 //   await sequelize.sync();
 //  })();
+
+// ejs
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// quill
+app.use(express.static('../node_modules/quill/dist'));
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/develops', developsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
