@@ -6,7 +6,6 @@ const publishSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'Users',
-        required: true
     },
     develop_id: {
         type: Schema.Types.ObjectId,

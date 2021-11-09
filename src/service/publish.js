@@ -27,6 +27,7 @@ const getOne = async (publish_id) => {
     const getOneLikeCount = await likeCount(publish_id);
 
     const pView = getOnePublish.view + 1;
+    console.log(getOnePublish);
     await Publish.findByIdAndUpdate(publish_id, {view: pView});
 
     const result = {
@@ -45,6 +46,18 @@ const getOne = async (publish_id) => {
 const create = async (params) => {
     const result = new Publish(params);
     return result.save();
+};
+
+const upload = async (params) => {
+    const getOnePublish = await Publish.findOne({name: params.name});
+    console.log(getOnePublish);
+    if (getOnePublish === null) {
+        create(params);
+    } else {
+        console.log(getOnePublish._id.toString());
+        const publish_id = getOnePublish._id.toString();
+        update(publish_id, params);
+    }
 };
 
 // 수정
@@ -80,4 +93,4 @@ const likeCount = async (publish_id) => {
     const getOneLikeCount = await Like.count({publish_id: publish_id});
     return getOneLikeCount;
 }
-module.exports = {getAll, getOne, create, update, remove, plus, likeCount};
+module.exports = {getAll, getOne, upload, create, update, remove, plus, likeCount};

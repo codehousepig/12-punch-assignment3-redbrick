@@ -20,6 +20,7 @@ const getAll = async (req, res, next) => {
 const getOne = async (req, res, next) => {
     const publish_id = new mongoose.mongo.ObjectId(req.params.id);
 
+    console.log(req.query.like);
     // like 에 회원 ID 가 있으면 확인 후 좋아요 추가
     if (!(req.query.like === undefined)) {
         const user_id = new mongoose.mongo.ObjectId(req.query.like);
@@ -37,28 +38,17 @@ const getOne = async (req, res, next) => {
     }
 };
 
-// 추가(저장)
-const create = async (req, res, next) => {
+// 업로드 - 처음이면 등록, 있던 이름이면 수정
+const upload = async (req, res, next) => {
     let params = {
         user_id: req.body.user_id,
         name: req.body.name,
         game: req.body.game,
         view: 0,
-    };
-    await sPublish.create(params);
-    res.status(200).json({ message: 'Create OK' });
-};
-
-// 수정
-const update = async (req, res, next) => {
-    const publish_id = req.params.id;
-    let params = {
-        name: req.body.name,
-        game: req.body.game,
         updateDate: Date.now(),
     };
-    await sPublish.update(publish_id, params);
-    res.status(200).json({message: 'Update OK'});
+    await sPublish.upload(params);
+    res.status(200).json({message: 'upload OK'});
 };
 
 // 삭제
@@ -68,4 +58,4 @@ const remove = async (req, res, next) => {
     return res.status(200).json({ message: ' Delete OK' });
 };
 
-module.exports = {getAll, getOne, create, update, remove};
+module.exports = {getAll, getOne, upload, remove};
