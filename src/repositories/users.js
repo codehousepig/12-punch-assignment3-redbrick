@@ -1,5 +1,5 @@
 import models from "../models";
-const sequelize = require("sequelize");
+import sequelize from "sequelize";
 const Op = sequelize.Op;
 
 export default {

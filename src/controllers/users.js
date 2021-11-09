@@ -1,23 +1,19 @@
 import userRepo from "../repositories/users";
-import bcrypt from "bcrypt";
-
-//비밀번호 암호화
-const hash = async (plainText) => {
-  const saltOrRounds = 10;
-  return await bcrypt.hash(plainText.toString(), saltOrRounds);
-};
 
 const signup = async (req, res, next) => {
   //회원가입
   try {
-    // console.log(req.body);
-    const user = await fnUsers.findByEmail(req.body.email);
-    // console.log(user);
+    if(!req.body.email || !req.body.password) {
+      return res.status(400).json({
+        message: 'Bad request',
+      });
+    } 
+    const user = await userRepo.findByEmail(req.body.email);
     if (!user) {
       let params = {
-        email: req.body.email
+        email: req.body.email,
+        password : req.body.password
       };
-      params.password = await hash(req.body.password);
       await userRepo.store(params);
       return res.status(200).json({ message: 'OK' });
     } else {
@@ -36,4 +32,4 @@ const login = async (req, res, next) => {
 };
 
 
-module.exports = { signup, login };
+export default { signup, login };

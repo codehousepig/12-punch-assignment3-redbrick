@@ -1,6 +1,6 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const User = require('../controllers/users');
+import User from "../controllers/users";
 
 /* 회원 */
 router.route('/signup').post(User.signup); //회원가입
@@ -12,4 +12,4 @@ router.route('/signup').post(User.signup); //회원가입
 // router.route("/:id").patch(User.put); //수정
 // router.route("/:id").delete(Board.del); //삭제
 
-module.exports = router;
+export default  router;
