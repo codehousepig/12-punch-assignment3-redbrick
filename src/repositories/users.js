@@ -1,71 +1,49 @@
-import models from "../models";
-import sequelize from "sequelize";
-const Op = sequelize.Op;
+const User = require('../models/user');
+const mongoose = require('mongoose');
+
 
 export default {
   // CREATE
-  store: async (data) => await models.User.create(data),
-
-  // 리스트조회 + 검색
-  all: async (
-    search 
-  ) =>{
-    let where = {};
-    if(search) where.email = {
-      [Op.like]: "%" + search + "%",
-    }
-    return await models.User.findAll({
-      attributes: { exclude: ["password"] },
-      order: [["id", "DESC"]],
-      where: where                  
-    })  
+  store: async (data) => {
+    const addUser = new User(data);
+    const user = await addUser.save();
+    return user;
   },
-
-
-  //리스트조회 + 페이징 + total반환
-  findAndCountAll: async (
-    e //페이징
-  ) =>
-    await models.User.findAndCountAll({
-      order: [["id", "DESC"]],
-      limit: 10,
-      offset: 10 * (Number(e.page) - 1),
-      where: {
-        level: e.level,
-      },
-    }),
-
-  //리스트조회 + 페이징 + total반환 + 검색
-  findAndCountAllWithSearchWord: async (e) =>
-    await models.User.findAndCountAll({
-      order: [["id", "DESC"]],
-      limit: 10,
-      offset: 10 * (Number(e.page) - 1),
-      where: {
-          email: {
-            [Op.like]: "%" + e.searchWord + "%",
-          },
-      },
-    }),
 
   findByEmail: async (email) => {
-    return await models.User.findOne({
-      where: {
-        email: email,
-      },
-    });
+    const user = await User.findOne({ email: email });
+    return user;
   },
 
-  findById: async (id) => await models.User.findByPk(id),
+  //리스트 조회 + 검색
+  all : async (params) => {
+    let where = {};
+    if (params.search != undefined) {
+      where.category = new RegExp(params.category, 'i');
+    }
+    const boards = await User.find(where)
+      .skip(Number(params.offset))
+      .limit(Number(params.limit));
+    return boards;
+  },
 
+  findById: async (_id) => {
+    console.log(_id);
+    const user = await User.findOne({ _id: new mongoose.mongo.ObjectId(_id) });
+    return user;
+  },
 
   // UPDATE
-  update: async (id, param) => {
-    return await models.User.update(param, {
-      where: {
-        id: id,
-      },
-    });
+  update : async (_id, params) => {
+  const board = await User.findByIdAndUpdate(_id, params);
+  // console.log(board);
+  return board;
   },
+
+  //삭제
+   deleteUser : async (_id) => {
+    const result = await User.remove({ _id: _id });
+    return result;
+  }
 
 };
