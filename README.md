@@ -69,6 +69,9 @@
 ## API
 [링크-postman document](https://documenter.getpostman.com/view/8136495/UVC5DSPt)
 
+## Realtime Architecture
+<img src="https://user-images.githubusercontent.com/67426853/140968650-c8ce377a-76a3-49f8-a045-ac76ca3b7973.png" width="700"/>
+
 
 ## 구현 기능
 ### 회원가입, 로그인
