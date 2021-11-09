@@ -66,9 +66,6 @@
 ## DB Schema
 <img src="https://user-images.githubusercontent.com/42341135/140942818-656c2fa2-3705-4b4a-a255-0903f5c59c66.png" width=700>
 
-## AWS Architecture
-<img src="https://user-images.githubusercontent.com/67426853/140548110-87c2dddd-fe42-40cb-8562-f651bb5c3f2c.png" width=700>
-
 ## API
 [링크-postman document](https://documenter.getpostman.com/view/8136495/UVC5DSPt)
 
