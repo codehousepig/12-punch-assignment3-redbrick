@@ -1,10 +1,5 @@
-// require("dotenv").config();
-
-// if (process.env.NODE_ENV !== "production") {
-//   require("@babel/register");
-// }
-
 const baseDbSetting = {
+  database: "redbrick",
   username: "admin",
   password: "redbrick",
   host: "redbrick.chiha599tyj3.ap-northeast-2.rds.amazonaws.com",

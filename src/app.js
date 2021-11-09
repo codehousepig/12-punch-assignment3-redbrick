@@ -7,8 +7,14 @@ import indexRouter from "./routes/index";
 import usersRouter from "./routes/users";
 // import jwtMiddleware from "./middlewares/jwt.middleware";
 import cors from "cors";
+import db from "./models/index";
 
 const app = express();
+
+const sequelize = db.sequelize;
+(async () => {
+  await sequelize.sync();
+ })();
 
 app.use(logger('dev'));
 app.use(express.json());
