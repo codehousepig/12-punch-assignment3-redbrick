@@ -1,6 +1,7 @@
 import userRepo from "../repositories/users";
 import createToken from "../utils/accessToken";
 import bcrypt from "bcrypt";
+import path from "path";
 
 //비밀번호 암호화
 const hash = async (plainText) => {
@@ -40,7 +41,7 @@ const loginSite = async (req, res, next) => {
   console.log('login site worked 1`2')
   try {
     console.log('login site worked 1`2')
-    const dirName = '/home/tech/coding/wanted/12-punch-assignment3-redbrick/front/login.html'
+    const dirName = (path.join(__dirname, 'login.html'));
     res.sendFile(dirName)
   }
   catch (e) {
@@ -50,11 +51,9 @@ const loginSite = async (req, res, next) => {
 
 //로그인
 const login = async (req, res, next) => {
-  console.log('login', req.body)
-  try {  
-    res.send(req.body.email)
-
-    const user = await userRepo.findByEmail(req.body.email);
+  let request = JSON.parse(JSON.stringify(req.body));
+  try {
+    const user = await userRepo.findByEmail(request.email);
     if (!user) {
       return res.status(401).json({
         message: 'Wrong Email',
@@ -78,7 +77,6 @@ const login = async (req, res, next) => {
         data: userData,
       });
     }
-
   } catch (e) {
     next(e);
   }
