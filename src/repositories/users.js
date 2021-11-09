@@ -19,7 +19,7 @@ export default {
   all : async (params) => {
     let where = {};
     if (params.search != undefined) {
-      where.category = new RegExp(params.category, 'i');
+      where.email = new RegExp(params.email, 'i');
     }
     const boards = await User.find(where)
       .skip(Number(params.offset))
@@ -28,19 +28,17 @@ export default {
   },
 
   findById: async (_id) => {
-    console.log(_id);
     const user = await User.findOne({ _id: new mongoose.mongo.ObjectId(_id) });
     return user;
   },
 
   // UPDATE
   update : async (_id, params) => {
-  const board = await User.findByIdAndUpdate(_id, params);
-  // console.log(board);
-  return board;
+    const user = await User.findByIdAndUpdate(_id, params);
+    return user;
   },
 
-  //삭제
+  // DELETE
    deleteUser : async (_id) => {
     const result = await User.remove({ _id: _id });
     return result;
