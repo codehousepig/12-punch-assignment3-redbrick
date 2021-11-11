@@ -120,7 +120,7 @@ $ npm start
 
 ## TIL정리 (Blog)
 - 김남형 : [3번째 회고 이번에 내가 구멍](https://velog.io/@42seouler/%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%A0%88%EB%93%9C%EB%B8%8C%EB%A6%AD-2%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0)
-- 김서경 :
+- 김서경 : [레드브릭 기술과제 회고](https://yummy-error-929.notion.site/Pre-Onboarding-0147ddcc0bc04947a986d37a70d651d8)
 - 김요셉 :
 - 정천우 : [codehousepig](https://blog.naver.com/codehouse9/222562017040)
 - 최유진 :
