@@ -123,7 +123,7 @@ $ npm start
 - 김서경 : [레드브릭 기술과제 회고](https://yummy-error-929.notion.site/Pre-Onboarding-0147ddcc0bc04947a986d37a70d651d8)
 - 김요셉 :
 - 정천우 : [codehousepig](https://blog.naver.com/codehouse9/222562017040)
-- 최유진 :
+- 최유진 : [become-clear](https://become-clear.tistory.com/87)
 
 # Reference
 이 프로젝트는 원티드x위코드 백엔드 프리온보딩 과제 일환으로 REDBRICK에서 출제한 과제를 기반으로 만들었습니다.
